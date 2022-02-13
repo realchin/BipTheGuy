@@ -94,6 +94,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        
         let originalImageFrame = imageView.frame
         let imageWidthShrink: CGFloat = 20
         let imageHeightShrink: CGFloat = 20
@@ -104,7 +105,9 @@ class ViewController: UIViewController {
         playSound(name: "punchSound")
         
         UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10.0) {
+            
             self.imageView.frame = originalImageFrame
+            
         }
         
     }
@@ -113,15 +116,22 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            
             imageView.image = editedImage
+            
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+           
             imageView.image = originalImage
+            
         }
+        
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
         dismiss(animated: true, completion: nil)
+        
     }
     
     func accessPhotoLibrary() {
